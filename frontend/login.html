@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In - Goal Tracker</title>
+    <link rel="stylesheet" href="login.css">
+    <!-- Google Identity Services SDK -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+<body>
+
+    <main class="login-container">
+        <!-- Left Banner Section -->
+        <section class="banner-section">
+            <header class="banner-header">
+                <a href="index.html" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 10px;">
+                    <span class="logo-text">Goal</span>
+                    <span class="dot"></span>
+                </a>
+            </header>
+
+            <div class="banner-content">
+                <h1>Do you have some Goals?</h1>
+                <p>
+                    Embark on a journey of self-improvement with Goal Tracker. Whether it's big or small, 
+                    your goals matter. Track your growth, build habits, and witness your progress unfold.
+                </p>
+            </div>
+
+            <footer class="banner-footer">
+                <span class="circle-icon"></span>
+            </footer>
+        </section>
+
+        <!-- Right Form Section -->
+        <section class="form-section">
+            <header class="form-header" style="display: flex; justify-content: space-between; align-items: center;">
+                <div class="brand-right">
+                    <span class="logo-text">Tracker</span>
+                    <span class="dot"></span>
+                </div>
+                
+                <!-- Theme Toggle Button -->
+                <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle theme mode">
+                    <svg class="sun-icon" viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none">
+                        <circle cx="12" cy="12" r="5"/>
+                        <line x1="12" y1="1" x2="12" y2="3"/>
+                        <line x1="12" y1="21" x2="12" y2="23"/>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                        <line x1="1" y1="12" x2="3" y2="12"/>
+                        <line x1="21" y1="12" x2="23" y2="12"/>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                    </svg>
+                </button>
+            </header>
+
+            <div class="form-content" style="text-align: center;">
+                <div class="form-view active">
+                    <h2>Welcome Back</h2>
+                    <p class="subheading">Sign in with Google to awaken your power.</p>
+
+                    <!-- Official Google Sign-In Container -->
+                    <div id="g_id_onload"
+                         data-client_id="YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com"
+                         data-context="signin"
+                         data-ux_mode="popup"
+                         data-callback="handleCredentialResponse"
+                         data-auto_prompt="false">
+                    </div>
+
+                    <!-- Rendered Google Button -->
+                    <div class="g_id_signin"
+                         data-type="standard"
+                         data-shape="rectangular"
+                         data-theme="outline"
+                         data-text="signin_with"
+                         data-size="large"
+                         data-logo_alignment="left"
+                         data-width="320">
+                    </div>
+                </div>
+            </div>
+
+            <footer class="form-footer" style="display: flex; justify-content: space-between; align-items: center;">
+                <nav class="footer-links">
+                </nav>
+                <span class="circle-icon"></span>
+            </footer>
+        </section>
+    </main>
+
+    <!-- Theme Switch & Script Logic -->
+    <script src="dark to light.js"></script>
+</body>
+</html>

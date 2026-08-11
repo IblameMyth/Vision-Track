@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Goal Tracker - Surpass Your Limits</title>
+    <link rel="stylesheet" href="home.css">
+</head>
+<body>
+
+    <main class="container">
+        <section class="left-section">
+            <header class="header-left">
+                <span class="logo-text">Goal</span>
+                <span class="dot"></span>
+            </header>
+
+            <div class="content-left">
+                <h1>Surpass Your Limits. Right Here, Right Now.</h1>
+                <p>
+                    A magic-tier productivity suite built to track your daily quests, personal growth, 
+                    and ultimate goals. Awaken your true potential and conquer every obstacle.
+                </p>
+            </div>
+
+            <footer class="footer-left">
+                <span class="circle-icon"></span>
+            </footer>
+        </section>
+        <section class="right-section">
+            <header class="header-right">
+                <div class="brand-right" style="display: flex; align-items: center; gap: 16px;">
+                    <!-- Theme Toggle Button -->
+                    <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle theme mode" style="background: none; border: 1px solid var(--theme-border); padding: 6px; cursor: pointer; color: var(--theme-accent);">
+                        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none">
+                            <circle cx="12" cy="12" r="5"/>
+                            <line x1="12" y1="1" x2="12" y2="3"/>
+                            <line x1="12" y1="21" x2="12" y2="23"/>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                            <line x1="1" y1="12" x2="3" y2="12"/>
+                            <line x1="21" y1="12" x2="23" y2="12"/>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                        </svg>
+                    </button>
+                    <span class="logo-text">Tracker</span>
+                    <span class="dot"></span>
+                </div>
+            </header>
+
+            <div class="content-right">
+                <h2>Embark On Your Journey</h2>
+                <div class="cta-buttons">
+                    <a href="login.html" class="btn btn-primary">Sign In</a>
+                    <a href="login.html#signup" class="btn btn-secondary">Create Account</a>
+                </div>
+
+                <!-- Feature Highlights -->
+                <ul class="features-list">
+                    <li class="feature-item">
+                        <div class="icon">
+                            <span class="dot"></span>
+                        </div>
+                        <div class="feature-text">
+                            <h3>Quest & Goal Tracking</h3>
+                            <p>Structure your objectives step-by-step and unlock milestone badges as you grow.</p>
+                        </div>
+                    </li>
+                    <li class="feature-item">
+                        <div class="icon">
+                            <span class="dot"></span>
+                        </div>
+                        <div class="feature-text">
+                            <h3>Daily Habit Grimoire</h3>
+                            <p>Build consistent streaks and monitor your continuous improvement day by day.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <footer class="footer-right">
+                <nav class="footer-nav">
+                </nav>
+                <span class="circle-icon"></span>
+            </footer>
+        </section>
+    </main>
+
+    <!-- Theme Logic Script -->
+    <script src="dark to light.js"></script>
+</body>
+</html>

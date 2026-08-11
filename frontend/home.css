@@ -1,0 +1,296 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800;900&family=Metamorphous&display=swap');
+
+/* ==========================================================================
+   1. Dynamic Character Theme Variables
+   ========================================================================== */
+:root {
+    /* DEFAULT LIGHT MODE: Yuno / Wind Magic / Golden Dawn Aesthetic */
+    --theme-bg-main: #f4f7f4;
+    --theme-bg-panel: #ffffff;
+    --theme-bg-dark-panel: #0d1a12; /* Deep Golden Dawn Green */
+    --theme-text-primary: #0f2317;
+    --theme-text-secondary: #3b5245;
+    --theme-text-inverted: #f0f7f2;
+    --theme-accent: #2e8b57; /* Wind Magic Emerald */
+    --theme-accent-gold: #d4af37; /* Golden Dawn Crest Gold */
+    --theme-glow: rgba(46, 139, 87, 0.35);
+    --theme-border: #bcd3c5;
+    --theme-font-title: 'Cinzel', serif;
+    --theme-font-body: 'Metamorphous', serif;
+}
+
+[data-theme="dark"] {
+    /* DARK MODE: Asta / Anti-Magic / Black Bulls Aesthetic */
+    --theme-bg-main: #0a0a0a;
+    --theme-bg-panel: #121212;
+    --theme-bg-dark-panel: #050505;
+    --theme-text-primary: #f0f0f0;
+    --theme-text-secondary: #a0a0a0;
+    --theme-text-inverted: #ffffff;
+    --theme-accent: #ff2a2a; /* Anti-Magic Crimson */
+    --theme-accent-gold: #e5b842; /* Grimoire Gold */
+    --theme-glow: rgba(255, 42, 42, 0.4);
+    --theme-border: #331414;
+}
+
+/* ==========================================================================
+   2. Base & Reset
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--theme-font-body);
+}
+
+body {
+    background-color: var(--theme-bg-main);
+    color: var(--theme-text-primary);
+    min-height: 100vh;
+    transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+/* ==========================================================================
+   3. Container & Split Layout
+   ========================================================================== */
+.container {
+    display: flex;
+    min-height: 100vh;
+    width: 100%;
+}
+
+.left-section,
+.right-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 48px 60px;
+    position: relative;
+    transition: all 0.4s ease;
+}
+
+/* Left Section */
+.left-section {
+    background: var(--theme-bg-dark-panel);
+    color: var(--theme-text-inverted);
+    border-right: 3px solid var(--theme-accent);
+    box-shadow: 10px 0 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Right Section */
+.right-section {
+    background: var(--theme-bg-panel);
+}
+
+/* ==========================================================================
+   4. Headers & Brand Elements
+   ========================================================================== */
+.header-left,
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--theme-font-title);
+    font-size: 1.8rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    color: var(--theme-accent);
+    text-shadow: 0 0 10px var(--theme-glow);
+}
+
+.header-left { justify-content: flex-start; }
+.header-right { justify-content: flex-end; }
+
+.dot {
+    width: 12px;
+    height: 12px;
+    background-color: var(--theme-accent);
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+    box-shadow: 0 0 8px var(--theme-accent);
+    display: inline-block;
+}
+
+/* ==========================================================================
+   5. Content Typography
+   ========================================================================== */
+.content-left,
+.content-right {
+    max-width: 480px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.content-left h1 {
+    font-family: var(--theme-font-title);
+    font-size: 3.2rem;
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    color: var(--theme-accent-gold);
+    text-shadow: 0 0 15px var(--theme-glow);
+}
+
+.content-left p {
+    color: #c2d4c8;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    border-left: 2px solid var(--theme-accent);
+    padding-left: 16px;
+}
+
+.content-right h2 {
+    font-family: var(--theme-font-title);
+    font-size: 2.2rem;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 32px;
+    color: var(--theme-accent);
+    text-shadow: 0 0 8px var(--theme-glow);
+}
+
+/* ==========================================================================
+   6. Action Buttons & Cards
+   ========================================================================== */
+.cta-buttons {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 40px;
+}
+
+.btn {
+    padding: 12px 24px;
+    font-family: var(--theme-font-title);
+    font-size: 0.9rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-decoration: none;
+}
+
+.btn-primary {
+    background: var(--theme-accent);
+    color: #ffffff;
+    border: 1px solid var(--theme-accent);
+    box-shadow: 0 0 12px var(--theme-glow);
+}
+
+.btn-primary:hover {
+    background: transparent;
+    color: var(--theme-accent);
+    box-shadow: 0 0 20px var(--theme-accent);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--theme-text-primary);
+    border: 1px solid var(--theme-border);
+}
+
+.btn-secondary:hover {
+    border-color: var(--theme-accent);
+    color: var(--theme-accent);
+}
+
+/* Features Cards */
+.features-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.feature-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    background: var(--theme-bg-panel);
+    padding: 18px;
+    border: 1px solid var(--theme-border);
+    outline: 1px solid var(--theme-accent);
+    outline-offset: -4px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-item:hover {
+    transform: translateX(6px);
+    box-shadow: 0 0 15px var(--theme-glow);
+}
+
+.feature-item .icon {
+    width: 42px;
+    height: 42px;
+    background-color: var(--theme-bg-dark-panel);
+    border: 1px solid var(--theme-accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.feature-item .icon img {
+    width: 22px;
+    height: 22px;
+    filter: drop-shadow(0 0 4px var(--theme-accent));
+}
+
+.feature-text h3 {
+    font-family: var(--theme-font-title);
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--theme-accent);
+    margin-bottom: 4px;
+}
+
+.feature-text p {
+    font-size: 0.85rem;
+    color: var(--theme-text-secondary);
+    line-height: 1.5;
+}
+
+/* Footers */
+.footer-left,
+.footer-right {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.copyright {
+    font-size: 0.8rem;
+    color: var(--theme-text-secondary);
+}
+
+.footer-nav {
+    display: flex;
+    gap: 20px;
+}
+
+.footer-nav a {
+    color: var(--theme-text-secondary);
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: color 0.2s ease;
+}
+
+.footer-nav a:hover {
+    color: var(--theme-accent);
+}
+
+.circle-icon {
+    width: 16px;
+    height: 16px;
+    background-color: var(--theme-accent);
+    clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+}
+
+@media (max-width: 900px) {
+    .container { flex-direction: column; }
+    .left-section, .right-section { padding: 32px 20px; }
+}
