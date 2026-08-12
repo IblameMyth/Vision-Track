@@ -1,26 +1,40 @@
 // Import Firebase ES Modules directly from CDN
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-import { getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
-import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+import { 
+  getAuth, 
+  GoogleAuthProvider, 
+  signInWithPopup, 
+  onAuthStateChanged 
+} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+import { 
+  getFirestore, 
+  doc, 
+  setDoc, 
+  getDoc, 
+  serverTimestamp 
+} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
 // ==================================================================
 // 1. Your Web App's Firebase Configuration
 // ==================================================================
 const firebaseConfig = {
-  apiKey: "AIzaSyAPzQp_jUgs7I4d80SvAL4krs8J8wffozQ",
-  authDomain: "visiontrack-6be5e.firebaseapp.com",
-  projectId: "visiontrack-6be5e",
-  storageBucket: "visiontrack-6be5e.firebasestorage.app",
-  messagingSenderId: "495813089191",
-  appId: "1:495813089191:web:1ecc21f5a69b082aef8882",
-  measurementId: "G-78TTE9QTLC"
+  apiKey: "AIzaSyAwFRPud6ruF_UfdByihyQgQMZHj4h5MdU",
+  authDomain: "visiontrack-2cefe.firebaseapp.com",
+  projectId: "visiontrack-2cefe",
+  storageBucket: "visiontrack-2cefe.firebasestorage.app",
+  messagingSenderId: "1018027173033",
+  appId: "1:1018027173033:web:7cad65414b9d6c3e88b5b8",
+  measurementId: "G-K9V37HL6DL"
 };
 
 // Initialize Firebase & Services
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
+
 const provider = new GoogleAuthProvider();
+// Force account picker prompt so users can switch accounts easily
+provider.setCustomParameters({ prompt: 'select_account' });
 
 // ==================================================================
 // 2. Theme Toggle & Google Sign-In Event Handlers
@@ -52,25 +66,36 @@ document.addEventListener('DOMContentLoaded', () => {
     if (googleBtn) {
         googleBtn.addEventListener('click', async () => {
             try {
+                // Disable button to prevent double-clicks
+                googleBtn.disabled = true;
+
                 const result = await signInWithPopup(auth, provider);
                 const user = result.user;
 
-                // Save or update individual user profile in Firestore
+                // Save or update user profile in Firestore
+                // Note: Using serverTimestamp() instead of new Date() for database consistency
                 await setDoc(doc(db, "users", user.uid), {
+                    uid: user.uid,
                     name: user.displayName,
                     email: user.email,
                     photoURL: user.photoURL,
-                    lastLogin: new Date()
+                    lastLogin: serverTimestamp()
                 }, { merge: true });
 
                 console.log("Logged in user ID:", user.uid);
                 
-                // Redirect to app interface
+                // Redirect after database write completes
                 window.location.href = "app.html";
 
             } catch (error) {
                 console.error("Google Auth Error:", error.code, error.message);
-                alert("Sign-in failed: " + error.message);
+                
+                // Don't show alert if user simply closed the popup window
+                if (error.code !== 'auth/popup-closed-by-user') {
+                    alert("Sign-in failed: " + error.message);
+                }
+            } finally {
+                googleBtn.disabled = false;
             }
         });
     }
@@ -79,10 +104,15 @@ document.addEventListener('DOMContentLoaded', () => {
 // ==================================================================
 // 3. Global Auth Observer
 // ==================================================================
-onAuthStateChanged(auth, (user) => {
+onAuthStateChanged(auth, async (user) => {
     if (user) {
         console.log("Active user session:", user.uid);
-        fetchUserData(user.uid);
+        await fetchUserData(user.uid);
+        
+        // Optional: If this code runs on login.html/index.html, automatically forward logged-in users
+        if (window.location.pathname.endsWith("login.html") || window.location.pathname === "/") {
+            window.location.href = "app.html";
+        }
     } else {
         console.log("No active user session.");
     }
@@ -96,6 +126,9 @@ async function fetchUserData(userId) {
 
         if (docSnap.exists()) {
             console.log("User Data loaded:", docSnap.data());
+            return docSnap.data();
+        } else {
+            console.log("No user profile found in Firestore yet.");
         }
     } catch (error) {
         console.error("Permission error fetching user data:", error);
