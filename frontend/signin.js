@@ -16,10 +16,10 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
 // ==================================================================
-// 1. Your Web App's Firebase Configuration (FIXED API KEY)
+// 1. Your Web App's Firebase Configuration
 // ==================================================================
 const firebaseConfig = {
-  apiKey: "AIzaSyAwFRPUd6ruF_UfdByihyQgQMZHj4h5MdU", // Fixed capital 'P'
+  apiKey: "AIzaSyC5KlpGut0ZNpPzbxHFpr_KUIWA3eKsZHw",
   authDomain: "visiontrack-2cefe.firebaseapp.com",
   projectId: "visiontrack-2cefe",
   storageBucket: "visiontrack-2cefe.firebasestorage.app",
