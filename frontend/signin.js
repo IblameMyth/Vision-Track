@@ -1,5 +1,6 @@
 // Import Firebase ES Modules directly from CDN
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js";
 import { 
   getAuth, 
   GoogleAuthProvider, 
@@ -15,10 +16,10 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
 // ==================================================================
-// 1. Your Web App's Firebase Configuration
+// 1. Your Web App's Firebase Configuration (FIXED API KEY)
 // ==================================================================
 const firebaseConfig = {
-  apiKey: "AIzaSyAwFRPud6ruF_UfdByihyQgQMZHj4h5MdU",
+  apiKey: "AIzaSyAwFRPUd6ruF_UfdByihyQgQMZHj4h5MdU", // Fixed capital 'P'
   authDomain: "visiontrack-2cefe.firebaseapp.com",
   projectId: "visiontrack-2cefe",
   storageBucket: "visiontrack-2cefe.firebasestorage.app",
@@ -29,6 +30,7 @@ const firebaseConfig = {
 
 // Initialize Firebase & Services
 const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
@@ -73,7 +75,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 const user = result.user;
 
                 // Save or update user profile in Firestore
-                // Note: Using serverTimestamp() instead of new Date() for database consistency
                 await setDoc(doc(db, "users", user.uid), {
                     uid: user.uid,
                     name: user.displayName,
@@ -109,7 +110,7 @@ onAuthStateChanged(auth, async (user) => {
         console.log("Active user session:", user.uid);
         await fetchUserData(user.uid);
         
-        // Optional: If this code runs on login.html/index.html, automatically forward logged-in users
+        // Redirect to dashboard if currently on login/index page
         if (window.location.pathname.endsWith("login.html") || window.location.pathname === "/") {
             window.location.href = "app.html";
         }
